@@ -110,7 +110,7 @@ pipeline{
                 
                 script{
                     
-                        withCredentials([string(credentialsId: 'docker_hub_Credentials', variable: 'docker_hub_cred')]) {
+                        withCredentials([string(credentialsId: 'docker_hub_pwd', variable: 'docker_hub_cred')]) {
                             sh 'docker login -u admin -p ${docker_hub_cred}'
                             sh 'docker push image akremgr/$JOB_NAME:v1.$BUILD_ID'
                             sh 'docker push image akremgr/$JOB_NAME:latest'
