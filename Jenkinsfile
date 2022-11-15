@@ -65,8 +65,15 @@ pipeline{
             steps{
                 
                 script{
-                    
-                    def ReadPomVersion = readMavenPom file: 'pom.xml'
+                    def pom = readMavenPom file: 'pom.xml'
+
+                    pom_version_array = pom.version.split('\\.')
+
+                    pom_version_array[1] = "${pom_version_array[1]}".toInteger() + 1
+
+                    pom.version = pom_version_array.join('.')
+
+                     writeMavenPom model: pom
                     nexusArtifactUploader artifacts:
                         [
                             [
@@ -81,7 +88,7 @@ pipeline{
                         nexusVersion: 'nexus3', 
                         protocol: 'http', 
                         repository: 'DemoApp-Release', 
-                        version: ReadPomVersion.version
+                        version: '${pom.version}'
                     
                    }
                     
