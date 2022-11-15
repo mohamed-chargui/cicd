@@ -104,7 +104,22 @@ pipeline{
                     
                 }
             }        
-        
+        stage('push image to nexus'){
+            
+            steps{
+                
+                script{
+                     
+                        sh 'docker login -u admin -p 123 http://localhost:8081/repository/Docker-registry'
+                        sh 'docker push http://localhost:8081/repository/Docker-registry/$JOB_NAME:v1.$BUILD_ID}'
+                        sh 'docker push http://localhost:8081/repository/Docker-registry/$JOB_NAME:latest}'
+                        sh 'docker rmi $(docker images --filter=reference="http://localhost:8081/repository/Docker-registry/$JOB_NAME:v1.$BUILD_ID*" -q)'
+                        sh 'docker rmi $(docker images --filter=reference="http://localhost:8081/repository/Docker-registry/$JOB_NAME:latest*" -q)'
+                        sh 'docker logout http://localhost:8081/repository/Docker-registry'
+                   }
+                    
+                }
+            }        
         }
         
 }
