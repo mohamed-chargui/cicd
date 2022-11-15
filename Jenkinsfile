@@ -104,13 +104,13 @@ pipeline{
                     
                 }
             }        
-        stage('push image to nexus'){
+        stage('push image to Dockerhub'){
             
             steps{
                 
                 script{
                     
-                        withCredentials([string(credentialsId: 'docker_hub_pwd', variable: 'docker_hub_cred')]) {
+                        withCredentials([string(credentialsId: '', variable: 'docker_hub_cred')]) {
                             sh 'docker login -u admin -p ${docker_hub_cred}'
                             sh 'docker push image akremgr/$JOB_NAME:v1.$BUILD_ID'
                             sh 'docker push image akremgr/$JOB_NAME:latest'
