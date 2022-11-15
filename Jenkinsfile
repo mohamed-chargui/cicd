@@ -109,14 +109,13 @@ pipeline{
             steps{
                 
                 script{
-                        withDockerRegistry(credentialsId: 'nexus-auth', url: 'http://localhost:8081/repository/Docker-registry/') {
-                        sh 'docker login -u admin --password-stdin 123 http://localhost:8081/repository/Docker-registry/'
-                        sh 'docker push http://localhost:8081/repository/Docker-registry/$JOB_NAME:v1.$BUILD_ID}'
-                        sh 'docker push http://localhost:8081/repository/Docker-registry/$JOB_NAME:latest}'
-                        sh 'docker rmi $(docker images --filter=reference="http://localhost:8081/repository/Docker-registry/$JOB_NAME:v1.$BUILD_ID*" -q)'
-                        sh 'docker rmi $(docker images --filter=reference="http://localhost:8081/repository/Docker-registry/$JOB_NAME:latest*" -q)'
-                        sh 'docker logout http://localhost:8081/repository/Docker-registry'
-                        args '-u root --privileged'
+                    
+                        withCredentials([string(credentialsId: 'docker_hub_Credentials', variable: 'docker_hub_cred')]) {
+                            sh 'docker login -u admin -p ${docker_hub_cred}'
+                            sh 'docker push image akremgr/$JOB_NAME:v1.$BUILD_ID'
+                            sh 'docker push image akremgr/$JOB_NAME:latest'
+                        }
+
                 }
                         
                    }
