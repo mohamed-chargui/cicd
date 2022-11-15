@@ -110,7 +110,7 @@ pipeline{
                 
                 script{
                      
-                        sh 'docker login -u admin --password-stdin 123 http://localhost:8081/repository/Docker-registry'
+                        sh 'docker login -u admin --password-stdin 123 http://localhost:8081/repository/Docker-registry/'
                         sh 'docker push http://localhost:8081/repository/Docker-registry/$JOB_NAME:v1.$BUILD_ID}'
                         sh 'docker push http://localhost:8081/repository/Docker-registry/$JOB_NAME:latest}'
                         sh 'docker rmi $(docker images --filter=reference="http://localhost:8081/repository/Docker-registry/$JOB_NAME:v1.$BUILD_ID*" -q)'
