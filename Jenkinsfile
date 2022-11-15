@@ -116,6 +116,7 @@ pipeline{
                         sh 'docker rmi $(docker images --filter=reference="http://localhost:8081/repository/Docker-registry/$JOB_NAME:v1.$BUILD_ID*" -q)'
                         sh 'docker rmi $(docker images --filter=reference="http://localhost:8081/repository/Docker-registry/$JOB_NAME:latest*" -q)'
                         sh 'docker logout http://localhost:8081/repository/Docker-registry'
+                        args '-u root --privileged'
                 }
                         
                    }
