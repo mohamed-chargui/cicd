@@ -12,7 +12,7 @@ pipeline{
                 
                 script{
                     
-                    git branch: 'Develop', url: 'https://github.com/akremgr/CICD'
+                    git branch: 'Develop', url: 'https://github.com/mohamed-chargui/cicd.git'
                 }
             }
         }
