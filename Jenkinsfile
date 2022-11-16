@@ -104,24 +104,7 @@ pipeline{
                     
                 }
             }        
-        stage('push image to Dockerhub'){
-            
-            steps{
-                
-                script{
-                    
-                        withCredentials([string(credentialsId: '', variable: 'docker_hub_cred')]) {
-                            sh 'docker login -u admin -p ${docker_hub_cred}'
-                            sh 'docker push image akremgr/$JOB_NAME:v1.$BUILD_ID'
-                            sh 'docker push image akremgr/$JOB_NAME:latest'
-                        
-
-                 }
-                        
-                }
-                    
-                }
-            }        
+        
         }
         
 }
