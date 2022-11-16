@@ -102,7 +102,7 @@ pipeline{
                         sh 'docker image tag $JOB_NAME:v1.$BUILD_ID akremgr/$JOB_NAME:latest'
                    }
                     
-                }
+                }iyurfjhjd
             }        
         
         }
