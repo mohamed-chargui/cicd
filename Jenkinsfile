@@ -46,6 +46,16 @@ stage('Integration testing'){
                 }
             }
         }
+          stage('Static code analysis'){
+
+            steps{
+
+                script{
+
+                    withSonarQubeEnv(credentialsId: 'tokenCI') {
+
+                        sh 'mvn clean package sonar:sonar'
+                    }
 
     }
 } 
