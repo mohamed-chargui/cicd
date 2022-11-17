@@ -59,4 +59,3 @@ stage('Integration testing'){
         }
          }
     }
-} 
