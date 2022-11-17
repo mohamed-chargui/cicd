@@ -56,6 +56,7 @@ stage('Integration testing'){
 
                         sh 'mvn clean package sonar:sonar'
                     }
-
+        }
+         }
     }
 } 
