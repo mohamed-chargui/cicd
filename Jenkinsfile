@@ -36,7 +36,7 @@ pipeline{
                 }
             }
         }
-stage('Integration testing'){
+        stage('Integration testing'){
 
             steps{
 
@@ -68,7 +68,7 @@ stage('Integration testing'){
                             [
                                 artifactId: 'springboot', 
                                 classifier: '', 
-                                file: 'target/uber.jar', 
+                                file: 'target/Uber.jar', 
                                 type: 'jar'
                                 ]
                          ], 
