@@ -16,6 +16,16 @@ pipeline{
                 }
             }
         }
+        stage('Maven build'){
+
+            steps{
+
+                script{
+
+                    sh 'mvn clean install'
+                }
+            }
+        }
         stage('UNIT testing'){
 
             steps{
@@ -36,16 +46,7 @@ stage('Integration testing'){
                 }
             }
         }
-       stage('Maven build'){
-
-            steps{
-
-                script{
-
-                    sh 'mvn clean install'
-                }
-            }
-        }
+       
           stage('Static code analysis'){
 
             steps{
