@@ -56,9 +56,18 @@ stage('Integration testing'){
 
                         sh 'mvn clean package sonar:sonar'
                     }
-        }
+            }
          }
+       }
+          stage ('quality gate ')
+          steps {
+            script{
+                waitForQualityGate abortPipeline: false, credentialsId: 'tokenCI'
+            }
+          }
+
+
+
     }
 }
- }
 
