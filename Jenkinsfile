@@ -60,7 +60,29 @@ stage('Integration testing'){
             }
          }
        }
-          
+          stage('nexus upload file .jar'){
+            steps{
+                script{
+                       nexusArtifactUploader artifacts:
+                        [
+                            [
+                                artifactId: 'springboot', 
+                                classifier: '', 
+                                file: 'target/uber.jar', 
+                                type: 'jar'
+                                ]
+                         ], 
+                                credentialsId: 'nexus_Auth', 
+                                groupId: 'com.example', 
+                                nexusUrl: '192.168.126.120:8081/', 
+                                nexusVersion: 'nexus3', 
+                                protocol: 'http', 
+                                repository: 'democicd-repo', 
+                                version: '2.0.0'
+                }
+               
+            }
+          }
 
 
     }
