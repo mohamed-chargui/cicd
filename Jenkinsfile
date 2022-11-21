@@ -59,13 +59,13 @@ stage('Integration testing'){
             }
          }
        }
-          stage ('quality gate ')
-          steps {
-            script{
-                waitForQualityGate abortPipeline: false, credentialsId: 'tokenCI'
+          stage ('quality gate '){
+             steps {
+               script{
+                  waitForQualityGate abortPipeline: false, credentialsId: 'tokenCI'
             }
           }
-
+         }
 
 
     }
