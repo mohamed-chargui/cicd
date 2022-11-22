@@ -75,10 +75,10 @@ pipeline{
                     type: 'jar']], 
                     credentialsId: 'nexus_Auth', 
                     groupId: 'com.example', 
-                    nexusUrl: '192.168.126.120:8081', 
+                    nexusUrl: '192.168.1.19:8081', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
-                    repository: 'nexusrepo' , 
+                    repository: nexusrepo , 
                     version: "${modif.version}"
             }
         }
