@@ -60,32 +60,7 @@ pipeline{
             }
          }
        }
-          stage('nexus upload file .jar'){
-            steps{
-                script{
-                    def readpomversion = readMavenPom file: 'pom.xml'
-                    def nexusrepo = readpomversion.version.endsWith("SNAPSHOT") ?  "democi-snapshot" :"democicd-repo" 
-
-                       nexusArtifactUploader artifacts:
-                        [
-                            [
-                                artifactId: 'springboot', 
-                                classifier: '', 
-                                file: 'target/Uber.jar', 
-                                type: 'jar'
-                                ]
-                         ], 
-                                credentialsId: 'nexus_Auth', 
-                                groupId: 'com.example', 
-                                nexusUrl: '192.168.126.120:8081/', 
-                                nexusVersion: 'nexus3', 
-                                protocol: 'http', 
-                                repository: nexusrepo, 
-                                version: "${readpomversion.version}"
-                }
-               
-            }
-          }
+          
 
 
     }
