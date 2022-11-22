@@ -64,9 +64,9 @@ pipeline{
       stage('nexus_Repos') {
         steps{
             script{
-                modif = readMavenPom(file: 'pom.xml')
-                def modif-version = pom.version
-                 
+                pom = readMavenPom(file: 'pom.xml')
+                def pomversion = pom.version
+                nexusRepo = pom_version.endsWith("SNAPSHOT") ? "democi-snapshot": "democicd-repo"
                 nexusArtifactUploader artifacts:
                 [
                  [
@@ -80,7 +80,7 @@ pipeline{
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: nexusrepo , 
-                    version: "${modif-version}"
+                    version: "${pomversion}"
             }
         }
       }
