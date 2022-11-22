@@ -78,7 +78,7 @@ pipeline{
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'Jenkins_Release', 
-                    version: modif-version
+                    version: "${modif-version.version}"
             }
         }
       }
