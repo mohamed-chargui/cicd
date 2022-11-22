@@ -64,7 +64,7 @@ pipeline{
       stage('nexus_Repos') {
         steps{
             script{
-                def modif-version = readMavenPom file: 'pom.xml'
+                def modif = readMavenPom file: 'pom.xml'
                 nexusArtifactUploader artifacts:
                 [
                  [
@@ -78,7 +78,7 @@ pipeline{
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'Jenkins_Release', 
-                    version: "${modif-version.version}"
+                    version: "${modif.version}"
             }
         }
       }
