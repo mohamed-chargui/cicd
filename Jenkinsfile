@@ -63,6 +63,7 @@ pipeline{
           stage('nexus upload file .jar'){
             steps{
                 script{
+                    def readpomversion = readMavenPom file: 'pom.xml'
                        nexusArtifactUploader artifacts:
                         [
                             [
@@ -78,7 +79,7 @@ pipeline{
                                 nexusVersion: 'nexus3', 
                                 protocol: 'http', 
                                 repository: 'democicd-repo', 
-                                version: '2.0.0'
+                                version: "$(readpomversion)"
                 }
                
             }
