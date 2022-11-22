@@ -79,7 +79,7 @@ pipeline{
                                 nexusVersion: 'nexus3', 
                                 protocol: 'http', 
                                 repository: 'democicd-repo', 
-                                version: "${readpomversion}"
+                                version: "${readpomversion.version}"
                 }
                
             }
